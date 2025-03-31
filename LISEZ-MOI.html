@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="icon.png">
+    <title>TunnelShare - Guide d’Installation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-theme {
+            background-color: #1e1e1e;
+            color: #d3d3d3;
+        }
+        body.light-theme {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        body.dark-theme h1 { color: #ecf0f1; }
+        body.light-theme h1 { color: #2c3e50; }
+        h2 {
+            margin-top: 30px;
+        }
+        body.dark-theme h2 { color: #66b3ff; }
+        body.light-theme h2 { color: #2980b9; }
+        .step {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        body.dark-theme .step { background-color: #2d2d2d; }
+        body.light-theme .step { background-color: #fff; }
+        .step-number {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            padding: 15px;
+            border-left: 4px solid #95a5a6;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        body.dark-theme .note { background-color: #3a3a3a; }
+        body.light-theme .note { background-color: #ecf0f1; }
+        code {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body.dark-theme code { background-color: #444; }
+        body.light-theme code { background-color: #eee; }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+        body.dark-theme .footer { color: #a0a0a0; }
+        body.light-theme .footer { color: #7f8c8d; }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        .theme-toggle:hover {
+            background-color: #2980b9;
+        }
+		.bmc-btn-container{
+			position: fixed !important;
+			right: 0px;
+			bottom: 0px;
+		}
+    </style>
+</head>
+<body class="dark-theme">
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <h1>TunnelShare - Guide d’Installation</h1> 
+	<h2>(Temps estimé : ~20/30min)</h2>
+    <p>Bienvenue ! <br/>Ce guide vous explique comment configurer TunnelShare, un serveur HTTP local pour partager vos fichiers via une URL. <br/>Suivez ces étapes simples pour commencer.</p>
+
+    <div class="step">
+        <h2><span class="step-number">1</span> Installer Chocolatey</h2>
+        <p>Chocolatey est un gestionnaire de paquets qui simplifie l’installation des outils nécessaires.</p>
+        <ul>
+            <li>Rendez-vous sur : <a href="https://chocolatey.org/install" target="_blank">https://chocolatey.org/install</a></li>
+            <li>Ouvrez PowerShell en mode administrateur et suivez les instructions d’installation.</li>
+            <li>Vérifiez l’installation avec la commande : <code>choco -v</code></li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">2</span> Installer et Configurer Ngrok</h2>
+        <p>Ngrok crée un tunnel sécurisé pour rendre votre serveur accessible sans exposer votre IP.</p>
+        <ol>
+            <li><strong>Créez un compte :</strong> Inscrivez-vous sur <a href="https://dashboard.ngrok.com/signup" target="_blank">https://dashboard.ngrok.com/signup</a>.</li>
+            <li><strong>Installez Ngrok :</strong> Suivez les instructions ici : <a href="https://dashboard.ngrok.com/get-started/setup/windows" target="_blank">Setup Windows</a> (Étape 1 uniquement).</li>
+            <li><strong>Récupérez un domaine statique :</strong> Dans le tableau de bord Ngrok, allez dans "Static Domain", créez un domaine (ex. <code>tadpole-grewn-ferret.ngrok-free.app</code>) et notez-le.</li>
+        </ol>
+        <p>Exemple : <code>ngrok http --url=tadpole-grewn-ferret.ngrok-free.app 80</code></p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">3</span> Ouvrir un Port</h2>
+        <p>Vous devez ouvrir un port (ex. <code>30120</code>) en UDP/TCP pour que le serveur fonctionne :</p>
+        <ul>
+            <li>Ajoutez une règle dans votre pare-feu Windows pour ce port.</li>
+            <li>Configurez la redirection de port sur votre routeur.</li>
+            <li>Si vous ne savez pas comment faire, vous pouvez faire la <em>Recherche suivante sur Google :</em> <br/> "Ouvrir un port Windows + [nom de votre routeur]".</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">4</span> Configurer le Script</h2>
+        <p>Modifiez le fichier <code>TunnelShare.bat</code> avec un éditeur de texte :</p>
+        <ol>
+            <li>Ouvrez le fichier.</li>
+            <li>Définissez les variables, par ex. pour moi ce serait :
+                <pre><code>:: Définir les variables
+set PORT=30120
+set NGROK_URL=tadpole-grewn-ferret.ngrok-free.app</code></pre>
+            </li>
+            <li>Sauvegardez.</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">5</span> Lancer le Serveur</h2>
+        <p>Double-cliquez sur <code>TunnelShare.bat</code> pour démarrer.</p>
+        <ul>
+            <li>Le serveur sera accessible via le domaine fourni par Ngrok, pour moi ce serait donc :<br/> https://tadpole-grewn-ferret.ngrok-free.app/
+            <li>Pour arrêter, appuyez sur une touche dans les fenêtres ouvertes ou <code>ctrl</code> + <code>c</code>.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">6</span> Ajouter vos Fichiers à Partager</h2>
+        <p>Les fichiers que vous souhaitez partager doivent être placés dans le répertoire <code>public</code>,<br/> déjà présent dans le dossier du script.</p>
+        <ul>
+            <li>Ce répertoire contient des sous-dossiers pré-créés pour organiser vos fichiers :</li>
+            <ul>
+                <li><code>Jeux</code> : Pour vos jeux ou fichiers associés.</li>
+                <li><code>Logiciels</code> : Pour vos applications ou installateurs.</li>
+                <li><code>Images</code> : Pour vos photos ou graphiques.</li>
+                <li><code>Vidéos</code> : Pour vos clips ou films.</li>
+            </ul>
+            <li>Déposez vos fichiers dans ces dossiers ou créez-en de nouveaux selon vos besoins.</li>
+        </ul>
+		<p>Vous n'avez plus qu'à partager le lien à qui vous voulez partager les fichiers. <br/> Fermez le script quand vous ne vous en servez pas, la configuration n'est plus à refaire.<br/>Il vous suffira simplement de double-cliquer sur le script <code>TunnelShare.bat</code> pour le relancer.</p>
+    </div>
+
+    <div class="note">
+        <h2>Note : Utilisation de <code>killport.bat</code></h2>
+        <p>Si le serveur ne se ferme pas correctement :</p>
+        <ul>
+            <li>Lancez <code>killport.bat</code>.</li>
+            <li>Entrez le port (ex. <code>30120</code>) et suivez les instructions.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Et voilà ! Partagez vos fichiers facilement. Des questions ? Vérifiez vos installations et configurations. <br/>Si cela ne fonctionne toujours pas je pourrais vous aider à débugger sur Discord.</p>
+		<span>- Walto</span>
+    </div>
+
+    <script>
+        // Vérifie la préférence sauvegardée ou applique le thème sombre par défaut
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || 'dark-theme';
+        body.classList.add(savedTheme);
+        updateButtonText();
+
+        function toggleTheme() {
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                localStorage.setItem('theme', 'light-theme');
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark-theme');
+            }
+            updateButtonText();
+        }
+
+        function updateButtonText() {
+            const button = document.querySelector('.theme-toggle');
+            button.textContent = body.classList.contains('dark-theme') 
+                ? '☀️' 
+                : '🌙';
+        }
+    </script>
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="Walto" data-description="Support me on Buy me a coffee!" data-message="" data-color="#2980b9" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+</body>
+</html>
