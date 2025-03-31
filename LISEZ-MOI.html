@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="icon" type="image/x-icon" href="icon.png">
     <title>TunnelShare - Guide d’Installation</title>
     <style>
         body {
@@ -94,42 +94,52 @@
         .theme-toggle:hover {
             background-color: #2980b9;
         }
-		.bmc-btn-container{
-			position: fixed !important;
-			right: 0px;
-			bottom: 0px;
-		}
+        .bmc-btn-container {
+            position: fixed !important;
+            right: 0px;
+            bottom: 0px;
+        }
     </style>
 </head>
 <body class="dark-theme">
-    <button class="theme-toggle" onclick="toggleTheme()"></button>
-    <h1>TunnelShare - Guide d’Installation</h1> 
-	<h2>(Temps estimé : ~20/30min)</h2>
+    <button title="theme" type="button" class="theme-toggle" onclick="toggleTheme()"></button>
+    <h1>TunnelShare - Guide d’Installation</h1>
+    <h2>(Temps estimé : ~20/30min)</h2>
     <p>Bienvenue ! <br/>Ce guide vous explique comment configurer TunnelShare, un serveur HTTP local pour partager vos fichiers via une URL. <br/>Suivez ces étapes simples pour commencer.</p>
 
     <div class="step">
         <h2><span class="step-number">1</span> Installer Chocolatey</h2>
         <p>Chocolatey est un gestionnaire de paquets qui simplifie l’installation des outils nécessaires.</p>
         <ul>
-            <li>Rendez-vous sur : <a href="https://chocolatey.org/install" target="_blank">https://chocolatey.org/install</a></li>
+            <li>Rendez-vous sur : <a rel="noopener" href="https://chocolatey.org/install" target="_blank">https://chocolatey.org/install</a></li>
             <li>Ouvrez PowerShell en mode administrateur et suivez les instructions d’installation.</li>
             <li>Vérifiez l’installation avec la commande : <code>choco -v</code></li>
         </ul>
     </div>
 
     <div class="step">
-        <h2><span class="step-number">2</span> Installer et Configurer Ngrok</h2>
+        <h2><span class="step-number">2</span> Installer Node.js et Serve</h2>
+        <p>Node.js est requis pour exécuter le serveur HTTP, et <code>serve</code> est l’outil qui héberge vos fichiers.</p>
+        <ol>
+            <li><strong>Installez Node.js :</strong> Avec Chocolatey installé, ouvrez une invite de commande (ou PowerShell) en mode administrateur et tapez : <br/><code>choco install nodejs -y</code><br/>Cela installe Node.js automatiquement.</li>
+            <li><strong>Installez Serve :</strong> Une fois Node.js installé, dans la même invite, tapez : <br/><code>npm install -g serve</code><br/></li>
+            <li><strong>Vérifiez :</strong> Tapez <code>node -v</code> et <code>serve -v</code> pour confirmer que tout est installé (vous devriez voir des numéros de version).</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">3</span> Installer et Configurer Ngrok</h2>
         <p>Ngrok crée un tunnel sécurisé pour rendre votre serveur accessible sans exposer votre IP.</p>
         <ol>
-            <li><strong>Créez un compte :</strong> Inscrivez-vous sur <a href="https://dashboard.ngrok.com/signup" target="_blank">https://dashboard.ngrok.com/signup</a>.</li>
-            <li><strong>Installez Ngrok :</strong> Suivez les instructions ici : <a href="https://dashboard.ngrok.com/get-started/setup/windows" target="_blank">Setup Windows</a> (Étape 1 uniquement).</li>
-            <li><strong>Récupérez un domaine statique :</strong>Toujours dans l'Étape 1, allez dans "Static Domain", créez un domaine (ex. <code>tadpole-grewn-ferret.ngrok-free.app</code>) et notez-le.</li>
+            <li><strong>Créez un compte :</strong> Inscrivez-vous sur <a rel="noopener" href="https://dashboard.ngrok.com/signup" target="_blank">https://dashboard.ngrok.com/signup</a>.</li>
+            <li><strong>Installez Ngrok :</strong> Suivez les instructions ici : <a rel="noopener" href="https://dashboard.ngrok.com/get-started/setup/windows" target="_blank">Setup Windows</a> (Étape 1 uniquement).</li>
+            <li><strong>Récupérez un domaine statique :</strong> Toujours dans l'Étape 1, allez dans "Static Domain", créez un domaine (ex. <code>tadpole-grewn-ferret.ngrok-free.app</code>) et notez-le.</li>
         </ol>
         <p>Exemple : <code>ngrok http --url=tadpole-grewn-ferret.ngrok-free.app 80</code></p>
     </div>
 
     <div class="step">
-        <h2><span class="step-number">3</span> Ouvrir un Port</h2>
+        <h2><span class="step-number">4</span> Ouvrir un Port</h2>
         <p>Vous devez ouvrir un port (ex. <code>30120</code>) en UDP/TCP pour que le serveur fonctionne :</p>
         <ul>
             <li>Ajoutez une règle dans votre pare-feu Windows pour ce port.</li>
@@ -139,7 +149,7 @@
     </div>
 
     <div class="step">
-        <h2><span class="step-number">4</span> Configurer le Script</h2>
+        <h2><span class="step-number">5</span> Configurer le Script</h2>
         <p>Modifiez le fichier <code>TunnelShare.bat</code> avec un éditeur de texte :</p>
         <ol>
             <li>Ouvrez le fichier.</li>
@@ -153,16 +163,16 @@ set NGROK_URL=tadpole-grewn-ferret.ngrok-free.app</code></pre>
     </div>
 
     <div class="step">
-        <h2><span class="step-number">5</span> Lancer le Serveur</h2>
+        <h2><span class="step-number">6</span> Lancer le Serveur</h2>
         <p>Double-cliquez sur <code>TunnelShare.bat</code> pour démarrer.</p>
         <ul>
-            <li>Le serveur sera accessible via le domaine fourni par Ngrok, pour moi ce serait donc :<br/> https://tadpole-grewn-ferret.ngrok-free.app/
-            <li>Pour arrêter, appuyez sur une touche dans les fenêtres ouvertes ou <code>ctrl</code> + <code>c</code>.</li>
+            <li>Le serveur sera accessible via le domaine fourni par Ngrok, pour moi ce serait donc :<br/> <code>https://tadpole-grewn-ferret.ngrok-free.app/</code></li>
+            <li>Pour arrêter, appuyez sur une touche dans les fenêtres ouvertes ou <code>Ctrl + C</code>.</li>
         </ul>
     </div>
 
     <div class="step">
-        <h2><span class="step-number">6</span> Ajouter vos Fichiers à Partager</h2>
+        <h2><span class="step-number">7</span> Ajouter vos Fichiers à Partager</h2>
         <p>Les fichiers que vous souhaitez partager doivent être placés dans le répertoire <code>public</code>,<br/> déjà présent dans le dossier du script.</p>
         <ul>
             <li>Ce répertoire contient des sous-dossiers pré-créés pour organiser vos fichiers :</li>
@@ -174,7 +184,7 @@ set NGROK_URL=tadpole-grewn-ferret.ngrok-free.app</code></pre>
             </ul>
             <li>Déposez vos fichiers dans ces dossiers ou créez-en de nouveaux selon vos besoins.</li>
         </ul>
-		<p>Vous n'avez plus qu'à partager le lien à qui vous voulez partager les fichiers. <br/> Fermez le script quand vous ne vous en servez pas, la configuration n'est plus à refaire.<br/>Il vous suffira simplement de double-cliquer sur le script <code>TunnelShare.bat</code> pour le relancer.</p>
+        <p>Vous n'avez plus qu'à partager le lien à qui vous voulez partager les fichiers. <br/> Fermez le script quand vous ne vous en servez pas, la configuration n'est plus à refaire.<br/>Il vous suffira simplement de double-cliquer sur le script <code>TunnelShare.bat</code> pour le relancer.</p>
     </div>
 
     <div class="note">
@@ -188,11 +198,10 @@ set NGROK_URL=tadpole-grewn-ferret.ngrok-free.app</code></pre>
 
     <div class="footer">
         <p>Et voilà ! Partagez vos fichiers facilement. Des questions ? Vérifiez vos installations et configurations. <br/>Si cela ne fonctionne toujours pas je pourrais vous aider à débugger sur Discord.</p>
-		<span>- Walto</span>
+        <span>- Walto</span>
     </div>
 
     <script>
-        // Vérifie la préférence sauvegardée ou applique le thème sombre par défaut
         const body = document.body;
         const savedTheme = localStorage.getItem('theme') || 'dark-theme';
         body.classList.add(savedTheme);
@@ -213,11 +222,11 @@ set NGROK_URL=tadpole-grewn-ferret.ngrok-free.app</code></pre>
 
         function updateButtonText() {
             const button = document.querySelector('.theme-toggle');
-            button.textContent = body.classList.contains('dark-theme') 
-                ? '☀️' 
+            button.textContent = body.classList.contains('dark-theme')
+                ? '☀️'
                 : '🌙';
         }
     </script>
-	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="Walto" data-description="Support me on Buy me a coffee!" data-message="" data-color="#2980b9" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="Walto" data-description="Support me on Buy me a coffee!" data-message="" data-color="#2980b9" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </body>
 </html>
