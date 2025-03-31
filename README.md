@@ -1,6 +1,7 @@
 # TunnelShare 
 **TunnelShare**, est un script de serveur HTTP local pour partager vos fichiers via une URL.
-Ce projet est uniquement à but de simplifier les partages de fichiers ponctuels entre utilisateurs, 
+
+Ce projet est uniquement à but de simplifier les partages de fichiers ponctuels entre utilisateurs,
 ce script n'est pas prévu pour rester actif en permanence, et n'embarque pas de sécurité poussée.
 
 Suivez ces étapes simples pour commencer. ( vous pouvez télécharger les fichiers [ici](https://github.com/WalTho/TunnelShare/releases). )
