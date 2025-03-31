@@ -1,6 +1,6 @@
 # TunnelShare - Guide d’Installation
 
-**Temps estimé : ~25-35 minutes**
+**Temps estimé : ~20-30 minutes**
 
 Bienvenue !  
 Ce guide vous explique comment configurer **TunnelShare**, un script de serveur HTTP local pour partager vos fichiers via une URL. 
