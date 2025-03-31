@@ -1,10 +1,16 @@
-# TunnelShare - Guide d’Installation
+# TunnelShare 
+**TunnelShare**, est un script de serveur HTTP local pour partager vos fichiers via une URL.
+Ce projet est uniquement à but de simplifier les partages de fichiers ponctuels entre utilisateurs, 
+ce script n'est pas prévu pour rester actif en permanence, et n'embarque pas de sécurité poussée.
+
+Suivez ces étapes simples pour commencer. ( vous pouvez télécharger les fichiers [ici](https://github.com/WalTho/TunnelShare/releases). )
+
+## Guide d’Installation
 
 **Temps estimé : ~20-30 minutes**
 
 Bienvenue !  
 Ce guide vous explique comment configurer **TunnelShare**, un script de serveur HTTP local pour partager vos fichiers via une URL. 
-Suivez ces étapes simples pour commencer. ( vous pouvez télécharger les fichiers [ici](https://github.com/WalTho/TunnelShare/releases). )
 
 ---
 
@@ -107,5 +113,19 @@ Partage tes fichiers facilement. Des questions ? Vérifie tes installations et c
 **- Walto**
 
 ---
+
+## Images :
+Node Serve :
+
+![image](https://github.com/user-attachments/assets/02966e9f-30a1-4c25-8f44-4e89d716ee32)
+
+TunnelShare + Serve :
+
+![image](https://github.com/user-attachments/assets/feeaf321-4888-44a3-b63b-0b6ab8e0bbc6)
+
+Ngrok :
+
+![image](https://github.com/user-attachments/assets/ee5265f7-94b8-454d-b046-e1406824cb4b)
+
 
 *Supporte-moi sur [Buy Me a Coffee](https://www.buymeacoffee.com/Walto) si tu trouves ça utile !*
