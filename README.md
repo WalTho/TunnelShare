@@ -3,8 +3,8 @@
 **Temps estimé : ~25-35 minutes**
 
 Bienvenue !  
-Ce guide vous explique comment configurer **TunnelShare**, un script de serveur HTTP local pour partager vos fichiers via une URL sécurisée. 
-Suivez ces étapes simples pour commencer.
+Ce guide vous explique comment configurer **TunnelShare**, un script de serveur HTTP local pour partager vos fichiers via une URL. 
+Suivez ces étapes simples pour commencer. (vous pouvez télécharger les fichiers [ici](https://github.com/WalTho/TunnelShare/releases).
 
 ---
 
